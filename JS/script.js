@@ -162,6 +162,14 @@ function opemMovieDetail(movie) {
 // radial-gradient(circle at bottom right,
 // #2D3E2C,
 // transparent 30%) #09090b;`
+let movieContent = document.createElement('div')
+movieContent.className = 'movie-content'
+detail.appendChild(movieContent)
+let Title = document.createElement('h2')
+Title.className = 'Title'
+Title.innerText = movie.original_title
+detail.appendChild('Title')
+console.log(Title);
 
 
 }

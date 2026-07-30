@@ -632,11 +632,11 @@ flex-direction: column;
 justify-content: flex-end;
 text-align: center;
 transition: .35 ease;
+
 }
 .movie-detail{
 
 display:flex;
-
 min-height:100vh;
 
 }
