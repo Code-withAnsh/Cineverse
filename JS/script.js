@@ -56,10 +56,22 @@ function getCard(data) {
 
     //ye neeche ka code mai fn me isliye likha kyunki card per click hone per landing page gayab ho
     //aur card naam ka div fn ke loop me bana hai toh yhi karna hoga iska kaam tamam
-    card.addEventListener("click", function (e) {
-      e.preventDefault()
-     opemMovieDetail(movie);
+card.addEventListener("click", function (e) {
+  e.preventDefault();
+  fetch(
+    `https://api.themoviedb.org/3/movie/${movie.id}?api_key=de1423f6e627f88b3373117e462d557e`,
+  )
+    .then((raw) => raw.json())
+    .then((info) => {
+      console.log(info);
+      
+  opemMovieDetail(movie,info)
+    })
+    .catch((err) => {
+      alert("API is not working");
+      
     });
+});
   }
 }
 document.addEventListener("DOMContentLoaded", function () {
@@ -82,6 +94,7 @@ function getMovies(url) {
     })
     .catch((err) => {
       console.error(err);
+      
     });
 }
 for (let i = 0; i < categories.length; i++) {
@@ -129,12 +142,13 @@ for (let i = 0; i < categories.length; i++) {
     }
   });
 }
-function opemMovieDetail(movie) {
+
+function opemMovieDetail(movie,info) {
    page1.style.display = "none";
    page2.style.display = "none";
    footContainer.style.display = "none";
    footer.style.display = "none";
-   detail.style.display = "block";
+   detail.style.display = "flex";
    //  alert("clicked");
   //  alert(movie.original_title);
   let detailCard = document.createElement("div");
@@ -168,8 +182,18 @@ detail.appendChild(movieContent)
 let Title = document.createElement('h2')
 Title.className = 'Title'
 Title.innerText = movie.original_title
-detail.appendChild('Title')
-console.log(Title);
-
-
+movieContent.appendChild(Title)
+let movieContentMeta = document.createElement("p");
+movieContentMeta.className = "movieContent-meta";
+const runtime = info.runtime >= 60
+  ? `${Math.floor(info.runtime / 60)}h ${info.runtime % 60}m`
+  : `${info.runtime}m`;
+  let lang = info.spoken_languages
+  console.log(lang);
+  
+  
+movieContentMeta.innerHTML = `
+  ⭐️ ${movie.vote_average} &nbsp; • &nbsp; ${movie.release_date.split("-")[0]} &nbsp; &nbsp; ${runtime} &nbsp; &nbsp ${originalLang}
+`;
+movieContent.appendChild(movieContentMeta)
 }

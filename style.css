@@ -635,11 +635,55 @@ transition: .35 ease;
 
 }
 .movie-detail{
+    display:flex;
+    align-items:flex-start;
+    gap:3rem;
+    padding:6rem 4rem;
+}
 
-display:flex;
-min-height:100vh;
+.detail-card{
+    width:320px;
+    flex-shrink:0;
+}
+
+.movie-content{
+    flex:1;
+    padding-top: 2.5rem;
+}
+.Title{
+    /* font-size:2.5rem;
+    line-height:1.1;
+    margin-bottom:1rem;
+    font-family: 'Trebuchet MS', 'Segoe UI', Tahoma, sans-serif;
+    font-weight: 400; */
+        font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 64px;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
 
 }
-.movie-detail{
-   margin: 15rem 7rem;
+
+@media (max-width:768px){
+
+    .movie-detail{
+        flex-direction:column;
+        padding:2rem 1.2rem;
+        gap:2rem;
+    }
+
+    .detail-card{
+        width:100%;
+        max-width:350px;
+        margin:auto;
+    }
+
+    .movie-content{
+        width:100%;
+    }
+
+}
+.movieContent-meta{
+padding-top: 2rem;
+font-size: 1.4rem;
 }
